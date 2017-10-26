@@ -18,9 +18,7 @@ def convertFileToDict():
       (key, val) = line.split()
       d[key] = val
   f.close
-  return d
-
-convertFileToDict()
+  return d  
 
 def translateSentence(dictionary, textToTranslate):
   translated = []
