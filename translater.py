@@ -1,26 +1,38 @@
 import re
 
-#Tanker:
-#1: Meny foerst om man vil legge til nytt ord i lista eller oversette
-#2: Fikse muligheten til aa skrive inn enda en setning uten aa maatte gaa gjennom startup-tekst
-#3: Muligheten til aa lagre tekst i en .txt-fil som opprettes
+#Tekst som dukker opp i starten av programmet
+def programStartUp():
+  print 'I hafuer naa entret ofuersetteren phra hedensk tiil kancelli.'
+  print 'Det ere svaert viktig att I ey skrifuer ind nordiske bokstafuer,'
+  print 'samt att I skrifuer kun en setning af gangen.'
+  print ' '
+  raw_input('Press enter phor att phortsette...')   
 
-def sentenceInput(): #done
+#Input av tekst fra bruker, samt fjerning av uppercases, komma, punktum, osv. 
+#Splitter til ogsaa setningen inn i et array med hvert ord som ett element 
+def sentenceInput(): 
   text = raw_input("Tast ind setningen I wiil ofuersette: ")
 
   return re.sub(r'[^\w\s]','',text.lower()).rsplit() #Remove punctuation, lowercase, split into list
 
+#Leser filen med ordboka og putter dette inn i et dictionary. 
+#Kaster exception hvis ordboka ikke finnes
 def convertFileToDict():
   d = {}
-  with open("ordliste.txt") as f:
-    for line in f:
+  try:
+    with open("ordliste.txt") as file:
+      for line in file:
       #print repr(line)
-      (key, val) = line.split()
-      d[key] = val
-  f.close
-  return d  
+        (key, val) = line.split()
+        d[key] = val
+    file.close
+    return d  
+  except IOError:
+    print 'Wii magter ey att finne philen med ordboken, och kan af denne grunn ey ofuersette noen tekst'
+    raise SystemExit(0)
 
-def translateSentence(dictionary, textToTranslate):
+#Oversetter fra norsk til kancelli og printer ut teksten
+def translate(dictionary, textToTranslate):
   translated = []
   for word in range(0,len(textToTranslate)):
     tempword = textToTranslate[word]
@@ -31,19 +43,18 @@ def translateSentence(dictionary, textToTranslate):
       translated.append(tempword)
       continue
 
-  print 'Teksten ble oversatt til foelgende'
+  print 'Teksten ble ofuersatt til foelgende'
   print ' '.join(translated)
 
-def main():
-  
-  print 'I hafuer naa entret ofuersetteren phra hedensk tiil kancelli.'
-  print 'Det ere svaert viktig att I ey skrifuer ind nordiske bokstafuer,'
-  print 'samt att I skrifuer kun en setning af gangen.'
-  print ' '
-  raw_input('Press en knast phor att phortsette...')  
+#Sekvensen oversettelsen skal foregaa i til bruk av flere setninger
+def translateSequence(dictionary):
+  inputText = sentenceInput()
+  translate(dictionary, inputText)
 
-  innSkriviTekst = sentenceInput()
+def main():
+  programStartUp()
   dictionary = convertFileToDict()
-  translateSentence(dictionary, innSkriviTekst)
+  translateSequence(dictionary)
+  
 
 main()
