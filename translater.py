@@ -4,9 +4,7 @@ import re
 def programStartUp():
   print 'I hafuer naa entret ofuersetteren phra hedensk tiil kancelli.'
   print 'Det ere svaert viktig att I ey skrifuer ind nordiske bokstafuer,'
-  print 'samt att I skrifuer kun en setning af gangen.'
-  print ' '
-  raw_input('Press enter phor att phortsette...')   
+  print 'samt att I skrifuer kun en setning af gangen. \n' 
 
 #Input av tekst fra bruker, samt fjerning av uppercases, komma, punktum, osv. 
 #Splitter til ogsaa setningen inn i et array med hvert ord som ett element 
@@ -43,13 +41,21 @@ def translate(dictionary, textToTranslate):
       translated.append(tempword)
       continue
 
-  print 'Teksten ble ofuersatt til foelgende'
+  print 'Teksten ble ofuersatt til foelgende:'
   print ' '.join(translated)
 
-#Sekvensen oversettelsen skal foregaa i til bruk av flere setninger
+#Sekvensen oversettelsen skal foregaa i til bruk av flere setninger.
+#Avslutter med aa spoerre brukeren om hen vil oversette ny setning eller ei. 
 def translateSequence(dictionary):
   inputText = sentenceInput()
   translate(dictionary, inputText)
+  keepOn = raw_input('Oensker Eder at ofuersette en ny setning? (y/n): ')
+  if keepOn == 'y':
+    translateSequence(dictionary)
+  else:
+    SystemExit(0)
+    
+
 
 def main():
   programStartUp()
