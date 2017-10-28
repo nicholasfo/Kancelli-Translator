@@ -16,7 +16,6 @@ diskresjon diskretion
 hoeyt hoeit
 utav udaaf
 visom Wiisdom
-har hafuer
 sin siin
 kjenner kiender
 til tiil
@@ -63,8 +62,8 @@ har hafuer
 betale erlegge
 betales erlegges
 anskaffe erverve
-kjoepe erverve
-foelge etterleve
+kjoepe erverfue
+foelge etterlefue
 frastaa phravike
 staar phremgaar
 utsettelse henstand
@@ -76,8 +75,8 @@ delta medvirke
 faa oppebaere
 pause opphold
 slutte opphoere
-nevnte ovennevnte
-noedvendig paakrevet
+nevnte ofuennevnte
+noedvendig paakrefuet
 alle samtlige
 slik saaledes
 dermed saaledes
